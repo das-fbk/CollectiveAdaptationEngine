@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/Composition"
+	xmlns:tns="http://das.fbk.eu/Composition" 
+	xmlns:ns1="http://das.fbk.eu/Annotation"
+	elementFormDefault="qualified" xmlns:pref="http://das.fbk.eu/DomainProperty">
+
+	<import namespace="http://das.fbk.eu/Annotation" schemaLocation="Annotation.xsd">
+	</import>
+	
+	<element name="composition">
+		<complexType>
+			<sequence>
+				<element name="domainProperties" minOccurs="1" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="domainProperty" minOccurs="1" maxOccurs="unbounded">
+								<complexType>
+									<attribute name="oid" type="NMTOKEN" use="required">
+									</attribute>
+									<attribute name="type" type="NMTOKEN" use="required">
+									</attribute>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="fragments" minOccurs="1" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="fragment" minOccurs="1" maxOccurs="unbounded">
+								<complexType>
+									<sequence>
+										<element name="assignment" minOccurs="1" maxOccurs="unbounded">
+											<complexType>
+												<attribute name="o_name" type="NMTOKEN" use="required">
+												</attribute>
+												<attribute name="oid" type="NMTOKEN" use="required">
+												</attribute>
+											</complexType>
+										</element>
+									</sequence>
+									<attribute name="sid" type="NMTOKEN" use="required">
+									</attribute>
+									<attribute name="type" type="NMTOKEN" use="required">
+									</attribute>
+								</complexType>
+							</element>
+						</sequence>
+
+					</complexType>
+				</element>
+
+				<!-- In this element we put object domain constraints of form event->precondition -->
+
+				<element name="constraints" minOccurs="0" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="constraint" minOccurs="1" maxOccurs="unbounded">
+								<complexType>
+									<complexContent>
+										<extension base="ns1:PreconditionType">
+											<attribute name="oid" type="NMTOKEN" use="required"></attribute>
+											<attribute name="event" type="NMTOKEN" use="required"></attribute>
+										</extension>
+									</complexContent>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+
+				<element name="synchronization" minOccurs="0" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="point" minOccurs="1" maxOccurs="unbounded">
+								<complexType>
+									<sequence>
+										<element name="domainProperty" minOccurs="1" maxOccurs="unbounded">
+											<complexType>
+												<sequence>
+													<element name="state" type="NMTOKEN" minOccurs="1"
+														maxOccurs="unbounded">
+													</element>
+												</sequence>
+												<attribute name="oid" type="NMTOKEN" use="required">
+												</attribute>
+											</complexType>
+										</element>
+									</sequence>
+									<attribute name="priority" type="int" use="optional">
+									</attribute>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="nextActions" minOccurs="0" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="action" minOccurs="1" maxOccurs="unbounded">
+								<complexType>
+									<simpleContent>
+										<extension base="NMTOKEN">
+											<attribute name="sid" type="NMTOKEN" use="required"></attribute>
+										</extension>
+									</simpleContent>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="controlFlowRequirements" minOccurs="0"
+					maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="requirement" type="tns:ControlFlowType"
+								minOccurs="1" maxOccurs="unbounded"></element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="runtime" minOccurs="0" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="domainProperties" minOccurs="0" maxOccurs="1">
+								<complexType>
+									<sequence>
+										<element name="domainProperty" minOccurs="1" maxOccurs="unbounded">
+											<complexType>
+												<simpleContent>
+													<extension base="NMTOKEN">
+														<attribute name="oid" type="NMTOKEN">
+														</attribute>
+													</extension>
+												</simpleContent>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+							<element name="fragments" minOccurs="0" maxOccurs="1">
+								<complexType>
+									<sequence>
+										<element name="fragment" minOccurs="1" maxOccurs="unbounded">
+											<complexType>
+												<simpleContent>
+													<extension base="NMTOKEN">
+														<attribute name="sid" type="NMTOKEN">
+														</attribute>
+													</extension>
+												</simpleContent>
+											</complexType>
+										</element>
+									</sequence>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+			</sequence>
+			<attribute name="name" type="NMTOKEN"></attribute>
+		</complexType>
+	</element>
+
+	<complexType name="ControlFlowType">
+		<sequence>
+			<element name="premise" maxOccurs="1" minOccurs="0">
+				<complexType>
+					<sequence>
+						<group ref="tns:clause" minOccurs="1" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
+			<element name="result" maxOccurs="unbounded" minOccurs="1">
+				<complexType>
+					<sequence>
+						<group ref="tns:clause" minOccurs="1" maxOccurs="unbounded" />
+					</sequence>
+					<attribute name="priority" type="int" use="required">
+					</attribute>
+				</complexType>
+			</element>
+		</sequence>
+	</complexType>
+
+
+
+
+	<group name="clause">
+		<choice>
+			<element name="true" />
+			<element name="and">
+				<complexType>
+					<sequence>
+						<group ref="tns:clause" minOccurs="2" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="then">
+				<complexType>
+					<sequence>
+						<group ref="tns:clause" minOccurs="2" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="or">
+				<complexType>
+					<sequence>
+						<group ref="tns:clause" minOccurs="2" maxOccurs="unbounded" />
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="trycatch">
+				<complexType>
+					<sequence>
+						<element name="try" minOccurs="1" maxOccurs="1">
+							<complexType>
+								<group ref="tns:clause" minOccurs="1" maxOccurs="unbounded" />
+							</complexType>
+						</element>
+						<element name="catch" minOccurs="0" maxOccurs="unbounded">
+							<complexType>
+								<sequence>
+									<element name="condition" minOccurs="1" maxOccurs="1">
+										<complexType>
+											<sequence>
+												<group ref="tns:clause" minOccurs="1" maxOccurs="unbounded" />
+											</sequence>
+										</complexType>
+									</element>
+									<element name="reaction" minOccurs="1" maxOccurs="1">
+										<complexType>
+											<sequence>
+												<group ref="tns:clause" minOccurs="1" maxOccurs="unbounded" />
+											</sequence>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+
+			<element name="action">
+				<complexType>
+					<sequence>
+						<element name="condition" minOccurs="0" maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="domainProperty" minOccurs="0" maxOccurs="unbounded">
+										<complexType>
+											<sequence>
+												<element name="state" type="NMTOKEN" minOccurs="1"
+													maxOccurs="unbounded">
+												</element>
+											</sequence>
+											<attribute name="oid" type="NMTOKEN" use="required">
+											</attribute>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="sid" type="NMTOKEN" use="required">
+					</attribute>
+					<attribute name="name" type="NMTOKEN" use="required">
+					</attribute>
+				</complexType>
+			</element>
+
+			<element name="event">
+				<complexType>
+					<sequence>
+						<element name="condition" minOccurs="0" maxOccurs="1">
+							<complexType>
+								<sequence>
+									<element name="domainProperty" minOccurs="0" maxOccurs="unbounded">
+										<complexType>
+											<sequence>
+												<element name="state" type="NMTOKEN" minOccurs="1"
+													maxOccurs="unbounded">
+												</element>
+											</sequence>
+											<attribute name="oid" type="NMTOKEN" use="required">
+											</attribute>
+										</complexType>
+									</element>
+								</sequence>
+							</complexType>
+						</element>
+					</sequence>
+					<attribute name="oid" type="NMTOKEN" use="required">
+					</attribute>
+					<attribute name="name" type="NMTOKEN" use="required">
+					</attribute>
+				</complexType>
+			</element>
+
+			<element name="situation">
+				<complexType>
+					<sequence>
+						<element name="domainProperty" minOccurs="0" maxOccurs="unbounded">
+							<complexType>
+								<sequence>
+									<element name="state" type="NMTOKEN" minOccurs="1"
+										maxOccurs="unbounded">
+									</element>
+								</sequence>
+								<attribute name="oid" type="NMTOKEN" use="required">
+								</attribute>
+							</complexType>
+						</element>
+					</sequence>
+				</complexType>
+			</element>
+		</choice>
+	</group>
+
+
+
+</schema>

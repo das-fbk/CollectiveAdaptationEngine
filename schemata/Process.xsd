@@ -1,0 +1,233 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/Process"
+	xmlns:tns="http://das.fbk.eu/Process" xmlns:srv="http://das.fbk.eu/Fragment"
+	elementFormDefault="qualified" xmlns:ns1="http://das.fbk.eu/Annotation">
+	<import namespace="http://das.fbk.eu/Fragment" schemaLocation="Fragment.xsd" />
+
+	<import namespace="http://das.fbk.eu/Annotation" schemaLocation="Annotation.xsd" />
+
+
+	<element name="process">
+		<complexType>
+			<annotation>
+				<documentation>Main type of a process, defined by a name, a sequence
+					of activities and a list of variables
+				</documentation>
+			</annotation>
+			<sequence>
+				<sequence>
+					<group ref="tns:activity" minOccurs="1" maxOccurs="unbounded">
+					</group>
+				</sequence>
+				<element name="variable" type="NMTOKEN" minOccurs="0"
+					maxOccurs="unbounded" />
+
+			</sequence>
+			<attribute name="name" type="string" />
+		</complexType>
+	</element>
+
+
+
+	<group name="activity">
+		<choice>
+			<element name="abstract" type="tns:abstractType" />
+			<element name="concrete" type="tns:concreteType" />
+			<element name="switch" type="tns:switchType" />
+			<element name="pick" type="tns:pickType" />
+			<element name="receive" type="tns:receiveType" />
+			<element name="invoke" type="tns:invokeType" />
+			<element name="while" type="tns:whileType" />
+		</choice>
+	</group>
+
+
+	<complexType name="abstractType">
+		<annotation>
+			<documentation>
+				Abstract activity to be refined by Adaptation Manager
+				using its goal
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<choice minOccurs="1" maxOccurs="1">
+						<element name="receiveGoal" type="string"></element>
+						<element name="goal" type="ns1:GoalType" />
+					</choice>
+					<element name="compensation" type="ns1:CompensationType"
+						minOccurs="0" maxOccurs="1" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="concreteType">
+		<annotation>
+			<documentation>An hard-coded activity to be performed to handle
+				special cases
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="switchType">
+		<annotation>
+			<documentation>Choose between a list of alternatives or perform a
+				default activity
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<element name="if" minOccurs="1" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<choice maxOccurs="2" minOccurs="1">
+
+									<element name="contextCondition" type="ns1:PreconditionType" />
+
+									<element name="varCondition">
+										<complexType>
+											<sequence>
+												<element name="name" type="string" maxOccurs="1"
+													minOccurs="1" />
+												<element name="value" type="string" maxOccurs="1"
+													minOccurs="1" />
+											</sequence>
+										</complexType>
+									</element>
+								</choice>
+								<element name="branch" maxOccurs="1" minOccurs="1">
+									<complexType>
+										<sequence>
+											<group ref="tns:activity" minOccurs="1" maxOccurs="unbounded">
+											</group>
+										</sequence>
+									</complexType>
+								</element>
+							</sequence>
+						</complexType>
+					</element>
+					<element name="default" minOccurs="0" maxOccurs="1">
+						<complexType>
+							<sequence>
+								<element name="branch" maxOccurs="1" minOccurs="1">
+									<complexType>
+										<sequence>
+											<group ref="tns:activity" minOccurs="1" maxOccurs="unbounded">
+											</group>
+										</sequence>
+									</complexType>
+								</element>
+							</sequence>
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="whileType">
+		<annotation>
+			<documentation>While a condition is true, continue to execute a list
+				of activities
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<element name="contextCondition" type="ns1:PreconditionType" />
+					<element name="varCondition">
+						<complexType>
+							<sequence>
+								<element name="name" type="string" maxOccurs="1"
+									minOccurs="1" />
+								<element name="value" type="string" maxOccurs="1"
+									minOccurs="1" />
+							</sequence>
+						</complexType>
+					</element>
+					<sequence>
+						<group ref="tns:activity" minOccurs="1" maxOccurs="unbounded">
+						</group>
+					</sequence>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="pickType">
+		<annotation>
+			<documentation>Choose from a list of activities to be performed
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<element name="onMessage" minOccurs="1" maxOccurs="unbounded">
+						<complexType>
+							<sequence>
+								<group ref="tns:activity" minOccurs="1" maxOccurs="unbounded">
+								</group>
+							</sequence>
+							<attribute name="sid" type="string" />
+							<attribute name="name" type="string" />
+						</complexType>
+					</element>
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="receiveType">
+		<annotation>
+			<documentation>An activity to be performed when a message with given
+				name is received
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<element name="compensation" type="ns1:CompensationType"
+						minOccurs="0" maxOccurs="1" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="invokeType">
+		<annotation>
+			<documentation>Invoke (or send) activity, used to invoke another
+				process instance
+			</documentation>
+		</annotation>
+		<complexContent>
+			<extension base="tns:activityType">
+				<sequence>
+					<element name="compensation" type="ns1:CompensationType"
+						minOccurs="0" maxOccurs="1" />
+				</sequence>
+			</extension>
+		</complexContent>
+	</complexType>
+
+	<complexType name="activityType" abstract="true">
+		<annotation>
+			<documentation>Father of all activities</documentation>
+		</annotation>
+		<sequence>
+			<element name="precondition" type="ns1:PreconditionType"
+				maxOccurs="1" minOccurs="0">
+			</element>
+			<element name="effect" type="ns1:EffectType" maxOccurs="1"
+				minOccurs="0"></element>
+		</sequence>
+		<attribute name="name" type="string"></attribute>
+	</complexType>
+
+</schema>

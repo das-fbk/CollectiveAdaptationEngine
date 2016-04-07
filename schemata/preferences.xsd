@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" 
+targetNamespace="http://www.example.org/preferences" 
+xmlns:tns="http://www.example.org/preferences" elementFormDefault="qualified">
+
+<element name="routes">
+		<annotation>
+			<documentation>Preferences</documentation>
+		</annotation>
+		<complexType>
+			<sequence>
+				<element name="preferences" maxOccurs="1" minOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="TravelTimeWeight" type="double"></element>
+							<element name="CostWeight" type="double"></element>
+							<element name="WalkingDistanceWeight" type="double"></element>
+							<element name="NumberOfChangesWeight" type="double"></element>
+							<element name="ReliabilityCostWeight" type="double"></element>
+							<element name="UnsatisfiedSafetyPreferenceWeight" type="double"></element>
+							<element name="WillingnessToShareDataWeight" type="double"></element>
+							<element name="MaximumTravelDuration" type="int"></element>
+							<element name="MaximumCost" type="double"></element>
+							<element name="MaximumWalkingDistance" type="double"></element>
+							<element name="MaximumReliabilityCost" type="double"></element>
+							<element name="MaximumNumberOfChanges" type="int"></element>
+						</sequence>
+						<attribute type="string" name="color" />
+					</complexType>
+				</element>
+			</sequence>
+		</complexType>
+	</element>
+
+
+</schema>

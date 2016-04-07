@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes"?>
+<preferences>
+	<cmax>10.0</cmax>
+	<crowdedar>true</crowdedar>
+	<cweight>0.3</cweight>
+	<emailsens>0.5</emailsens>
+	<gpssens>0.5</gpssens>
+	<NCweight>0.2</NCweight>
+	<namesens>0.5</namesens>
+	<noCmax>3</noCmax>
+	<phonesens>0.5</phonesens>
+	<pmCash>true</pmCash>
+	<pmCreditCard>true</pmCreditCard>
+	<pmPaypal>true</pmPaypal>
+	<pmServiceCard>true</pmServiceCard>
+	<pollutedar>true</pollutedar>
+	<RCweight>0.1</RCweight>
+	<TTweight>0.2</TTweight>
+	<tmax>40</tmax>
+	<ttCar>false</ttCar>
+	<ttCarpooling>true</ttCarpooling>
+	<ttFlexibus>true</ttFlexibus>
+	<ttWalk>true</ttWalk>
+	<USPweight>0.0</USPweight>
+	<unsafear>true</unsafear>
+	<untrustedprov>true</untrustedprov>
+	<WDweight>0.1</WDweight>
+	<WSDweight>0.1</WSDweight>
+	<wmax>100.0</wmax>
+</preferences>

@@ -1,0 +1,17 @@
+{
+	"type" : "ums",
+  
+	"solvers" : [
+		{
+			"name" : "AssignPassengers",
+			"type": "external",
+			"issues" : ["ProposeSolution"],
+			"constraints" : ["numberOfPassengers"]
+		},		
+	],
+	"preferences" : [
+		{
+			"name" : "pref1"
+		}
+	]
+}

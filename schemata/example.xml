@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ensemble name="" xmlns:tns="http://das.fbk.eu/Ensemble" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://das.fbk.eu/Ensemble Ensemble.xsd ">
+  <tns:role id="" type="">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    <tns:solver name="" selected="true">
+      <tns:issue>
+        <tns:issueType>tns:issueType</tns:issueType>
+        <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition>tns:solverCondition</tns:solverCondition>
+      <tns:solution cost="0.0" name="" time="0">
+        <tns:internalSolution>tns:internalSolution</tns:internalSolution>
+        <tns:issue>
+          <tns:issueType>tns:issueType</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    <tns:preferences>NMTOKEN</tns:preferences>
+  </tns:role>
+  <tns:variable>NMTOKEN</tns:variable>
+</tns:ensemble>

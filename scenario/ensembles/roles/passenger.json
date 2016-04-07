@@ -1,0 +1,30 @@
+{
+	"type" : "passenger",
+	"issues" : [
+		{
+			"type" : "pass_delay",
+			"params" : ["period"]
+		}
+	],
+	"solvers" : [
+		{
+	    	"name" : "change_time",	
+			"type" : "external",
+			"issues" : ["change_time_needed"],
+			"constraints" : ["max_time", "compensation"]
+		},
+		{
+			"name" : "ask_others",	
+			"type" : "external",
+			"issues" : ["pass_delay"],
+			"constraints" : ["max_time", "compensation"]
+		}
+		
+	],
+	"preferences" : [
+		{
+			"name" : "pref1"
+		}
+	]
+		
+}

@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/DomainObject"
+	xmlns:tns="http://das.fbk.eu/DomainObject" elementFormDefault="qualified"
+	xmlns:Q1="http://das.fbk.eu/Process" xmlns:Q2="http://das.fbk.eu/Fragment">
+
+	<import schemaLocation="Process.xsd" namespace="http://das.fbk.eu/Process" />
+	<import schemaLocation="Fragment.xsd" namespace="http://das.fbk.eu/Fragment" />
+
+	<element name="domainObject">
+		<complexType>
+			<sequence>
+
+				<element name="domainKnowledge" minOccurs="1" maxOccurs="1">
+					<complexType>
+						<sequence>
+							<element name="internalDomainProperty" minOccurs="0"
+								maxOccurs="unbounded">
+								<complexType>
+									<attribute name="name" type="string" use="required">
+									</attribute>
+								</complexType>
+							</element>
+
+							<element name="externalDomainProperty" minOccurs="0"
+								maxOccurs="unbounded">
+								<complexType>
+									<attribute name="name" type="string" use="required">
+									</attribute>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+
+
+				<element name="process" minOccurs="1" maxOccurs="1">
+					<complexType>
+						<attribute name="name" type="string" use="required">
+						</attribute>
+					</complexType>
+				</element>
+
+				<element name="fragment" minOccurs="0" maxOccurs="unbounded">
+					<complexType>
+						<attribute name="name" type="string" use="required">
+						</attribute>
+					</complexType>
+				</element>
+
+				<element name="robustnessAnnotation" minOccurs="0" maxOccurs="1" >
+					<complexType>
+						<attribute name="name" type="string" use="required">
+						</attribute>
+					</complexType>
+				</element>
+			</sequence>
+			<attribute name="name" type="string" />
+		</complexType>
+	</element>
+
+
+</schema>
+

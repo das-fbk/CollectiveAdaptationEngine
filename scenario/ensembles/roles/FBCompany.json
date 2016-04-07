@@ -1,0 +1,33 @@
+{
+	"type" : "company",
+  
+	"issues" : [
+		{
+			"type" : "reroute_needed",
+			"params" : ["reroute_description"]
+		},
+		{
+			"type" : "needed",
+			"params" : ["reroute_description"]
+		}
+	],
+	"solvers" : [
+		{
+			"name" : "manage_pass_delay",
+			"type" : "external",
+			"issues" : ["pass_delay"],
+			"constraints" : ["max_time", "fee"]
+		},
+		{
+			"name" : "ManagePassengers",
+			"type" : "internal",
+			"issues" : [""],
+			"constraints" : ["c1", "c2"]
+		}
+	],
+	"preferences" : [
+		{
+			"name" : "pref1"
+		}
+	]
+}

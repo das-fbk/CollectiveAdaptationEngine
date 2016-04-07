@@ -1,0 +1,46 @@
+{
+	"type" : "bus",
+  
+	"issues" : [
+		{
+			"type" : "RouteBlocked",
+			"params" : ["p1"]
+		}
+	],
+	"solvers" : [	
+		{
+			"name" : "RouteBlocked",
+			"type": "internal",
+			"solutions" : [
+				{
+				"name": "RouteBlocked",
+				"Pinternal": "Pinternal",
+				"Issues":["RouteBlocked"]
+					}
+			]
+				
+				]
+			
+			]
+			,
+			"constraints" : ["c1", "c2"]
+		},
+			{
+			"name" : "FBReRoute",
+			"type": "internal",
+			"issues" : [""],
+			"constraints" : ["c1", "c2"]
+		},
+		{
+			"name" : "CloseRoute",
+			"type": "internal",
+			"issues" : [""],
+			"constraints" : ["c1", "c2"]
+		}
+	],
+	"preferences" : [
+		{
+			"name" : "pref1"
+		}
+	]
+}

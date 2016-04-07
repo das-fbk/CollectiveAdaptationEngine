@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" xmlns:tns="http://das.fbk.eu/Fragment"
+	xmlns:an="http://das.fbk.eu/Annotation" targetNamespace="http://das.fbk.eu/Fragment"
+	elementFormDefault="qualified">
+
+	<import namespace="http://das.fbk.eu/Annotation" schemaLocation="Annotation.xsd" />
+
+
+	<element name="fragment">
+		<complexType>
+			<sequence>
+
+				<element name="state" minOccurs="1" maxOccurs="unbounded">
+					<complexType>
+						<complexContent>
+							<extension base="tns:ServiceActionType">
+								<attribute name="isInitial" type="boolean">
+								</attribute>
+							</extension>
+						</complexContent>
+					</complexType>
+				</element>
+
+				<element name="action" minOccurs="1" maxOccurs="unbounded">
+					<complexType>
+						<complexContent>
+							<extension base="tns:ServiceActionType">
+								<attribute name="actionType" type="tns:actionTypeValues"
+									use="required" />
+							</extension>
+						</complexContent>
+					</complexType>
+				</element>
+
+				<element name="transition" minOccurs="1" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="initialState" type="tns:ServiceStateType"
+								minOccurs="1" maxOccurs="1">
+							</element>
+							<element name="finalState" type="tns:ServiceStateType"
+								minOccurs="1" maxOccurs="1">
+							</element>
+							<element name="action" minOccurs="1" maxOccurs="1">
+								<complexType>
+									<complexContent>
+										<extension base="tns:ServiceActionType">
+											<attribute name="actionType" type="tns:actionTypeValues"
+												use="required" />
+										</extension>
+									</complexContent>
+								</complexType>
+							</element>
+						</sequence>
+					</complexType>
+				</element>
+
+				<element name="consumerEntityType" type="string" maxOccurs="1"
+					minOccurs="1">
+				</element>
+
+			</sequence>
+			<attribute name="id" type="string" use="required" />
+		</complexType>
+	</element>
+
+	<complexType name="ServiceStateType">
+		<simpleContent>
+			<extension base="string" />
+		</simpleContent>
+	</complexType>
+
+	<complexType name="ServiceActionType">
+		<sequence>
+			<choice minOccurs="0" maxOccurs="1">
+				<element name="receiveGoal" type="string" />
+				<element name="goal" type="an:GoalType" />
+			</choice>
+			<element name="precondition" type="an:PreconditionType"
+				minOccurs="0" maxOccurs="1" />
+			<element name="effect" type="an:EffectType" minOccurs="0"
+				maxOccurs="1" />
+			<element name="compensation" type="an:CompensationType"
+				minOccurs="0" maxOccurs="1" />
+		</sequence>
+		<attribute name="name" type="string" />
+
+	</complexType>
+
+	<simpleType name="actionTypeValues">
+		<restriction base="string">
+			<enumeration value="input" />
+			<enumeration value="output" />
+			<enumeration value="abstract" />
+		</restriction>
+	</simpleType>
+
+</schema>
+
+

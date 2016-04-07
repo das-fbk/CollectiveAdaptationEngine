@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/Annotation"
+    xmlns:tns="http://das.fbk.eu/Annotation" elementFormDefault="qualified">
+   
+ <element name="annotations" type="tns:annotationListType"> 
+  </element>
+    
+ <group name="abstractAnnotation">
+    <choice>
+        <element name="goal" type="tns:GoalType"></element>
+        <element name="precondition" type="tns:PreconditionType"></element>
+        <element name="effect" type="tns:EffectType"></element>  
+        <element name="compensation" type="tns:CompensationType"></element>  
+    </choice>
+</group>
+  
+<complexType name="annotationListType">
+    <sequence>
+       <group ref="tns:abstractAnnotation" minOccurs="0" maxOccurs="unbounded"></group>
+    </sequence>
+</complexType>
+    
+ 
+    <complexType name="GoalType">
+        <complexContent>
+            <extension base="tns:ClauseType">
+               <attribute name="action" type="NMTOKEN"></attribute>
+            </extension>
+        </complexContent>
+    </complexType>
+    <complexType name="CompensationType">
+        <complexContent>
+            <extension base="tns:ClauseType">
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="PreconditionType">
+        <complexContent>
+            <extension base="tns:ClauseType">
+            </extension>
+        </complexContent>
+    </complexType>
+    
+    <complexType name="EffectType">
+    	<sequence minOccurs="0" maxOccurs="unbounded" >
+    		<element name="event">
+    			<complexType>
+    			<attribute name="dpName"></attribute>
+    			<attribute name="eventName"></attribute>
+    			</complexType>
+    		</element>
+    	</sequence>
+    </complexType>
+
+    <complexType name="ClauseType">
+        <sequence>
+            <element name="point" minOccurs="1" maxOccurs="unbounded">
+                <complexType>
+                    <sequence>
+                        <element name="domainProperty" minOccurs="1" maxOccurs="unbounded">
+                            <complexType>
+                                <sequence>
+                                    <element name="state" type="NMTOKEN" minOccurs="1"
+                                        maxOccurs="unbounded"></element>
+                                </sequence>
+                                <attribute name="dp_name" type="NMTOKEN" use="required"></attribute>
+                            </complexType>
+                        </element>
+                    </sequence>
+                </complexType>
+              
+            </element>
+        </sequence>
+    </complexType>
+    
+</schema>   
+

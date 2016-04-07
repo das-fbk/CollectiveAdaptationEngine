@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:routes xmlns:tns="http://www.example.org/preferences" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.example.org/preferences preferences.xsd ">
+  <tns:preferences>
+    <tns:TravelTimeWeight>0.0</tns:TravelTimeWeight>
+    <tns:CostWeight>0.0</tns:CostWeight>
+    <tns:WalkingDistanceWeight>0.0</tns:WalkingDistanceWeight>
+    <tns:NumberOfChangesWeight>0.0</tns:NumberOfChangesWeight>
+    <tns:ReliabilityCostWeight>0.0</tns:ReliabilityCostWeight>
+    <tns:UnsatisfiedSafetyPreferenceWeight>0.0</tns:UnsatisfiedSafetyPreferenceWeight>
+    <tns:WillingnessToShareDataWeight>0.0</tns:WillingnessToShareDataWeight>
+    <tns:MaximumTravelDuration>0</tns:MaximumTravelDuration>
+    <tns:MaximumCost>0.0</tns:MaximumCost>
+    <tns:MaximumWalkingDistance>0.0</tns:MaximumWalkingDistance>
+    <tns:MaximumReliabilityCost>0.0</tns:MaximumReliabilityCost>
+    <tns:MaximumNumberOfChanges>0</tns:MaximumNumberOfChanges>
+  </tns:preferences>
+</tns:routes>

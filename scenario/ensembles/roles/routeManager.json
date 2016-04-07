@@ -1,0 +1,26 @@
+{
+	"type" : "routeManager",
+
+	"solvers" : [
+		{
+			
+			"name": "RouteBlocked",
+			"type" : "internal",
+			"issues" : ["FBReRoute"],
+			"constraints" : ["c1", "c2"]
+		},
+		{
+			
+			"name": "RouteBlocked",
+			"type" : "internal",
+			"issues" : ["CloseRoute","ManagePassengers"],
+			"constraints" : ["c1", "c2"]
+		}
+	
+	],
+	"preferences" : [
+		{
+			"name" : "pref1"
+		}
+	]
+}		

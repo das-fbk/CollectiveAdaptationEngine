@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ensemble name="Route1" xmlns:tns="http://das.fbk.eu/Ensemble" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://das.fbk.eu/Ensemble Ensemble.xsd ">
+  <!--  ROUTE MANAGER RM1 -->
+  <tns:role id="rm1" type="RM1">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+    <!--Solve FB Route Interrupted with PickUp Point Revised-->
+    <tns:solver name="S1" selected="true">
+      <tns:issue>
+        <tns:issueType>DriverNotifyRouteInterrupted</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+        <!--  communicate to the Driver to change the route path -->
+        <tns:issueType>DriverChangePath</tns:issueType>
+        <tns:issueCondition>Exist</tns:issueCondition>
+      </tns:issue>
+      <tns:issue>
+        <!--  communicate to Passenger to change the pickup point -->
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition>Forall</tns:issueCondition>
+      </tns:issue>
+      </tns:solution>
+    </tns:solver>
+   
+    
+    <!--Solve FB Route Interrupted with Change Time-->
+    <tns:solver name="S2" selected="true">
+      <tns:issue>
+        <tns:issueType>DriverNotifyRouteInterrupted</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+        <!--  communicate to the Driver to change the route path -->
+        <tns:issueType>DriverChangePath</tns:issueType>
+        <tns:issueCondition>Exist</tns:issueCondition>
+      </tns:issue>
+      <tns:issue>
+        <!--  communicate to Passenger to change the pickup time -->
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition>Forall</tns:issueCondition>
+      </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    
+    
+     <!--Solve FB Route Interrupted with PickUp Point and PickUp Time Revised-->
+    <tns:solver name="S3" selected="true">
+      <tns:issue>
+        <tns:issueType>DriverNotifyRouteInterrupted</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+        <!--  communicate to the Driver to change the route path -->
+        <tns:issueType>DriverChangePath</tns:issueType>
+        <tns:issueCondition>Forall</tns:issueCondition>
+      </tns:issue>
+      <tns:issue>
+        <!--  communicate to Passenger to change the pickup point -->
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition>Exist</tns:issueCondition>
+      </tns:issue>
+      <tns:issue>
+        <!--  communicate to Passenger to change the pickup time -->
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition>Exist</tns:issueCondition>
+      </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+
+    </tns:role>
+    
+   <!--  DRIVER D1 -->
+  <tns:role id="d1" type="D1">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+    <!--Update route path (Local)-->
+    <tns:solver name="S4" selected="true">
+      <tns:issue>
+        <tns:issueType>DriverChangePath</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+
+    </tns:role>
+    
+   <!--  PASSENGER P1 -->
+  <tns:role id="p1" type="P1">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+<!--change pickup point (Local)-->
+    <tns:solver name="S5" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+     <!--change pickup time (Local)-->
+    <tns:solver name="S6" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+
+    </tns:role>
+    
+    
+    <!--  PASSENGER P2 -->
+  <tns:role id="p2" type="P2">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+<!--change pickup point (Local)-->
+    <tns:solver name="S5" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+     <!--change pickup time (Local)-->
+    <tns:solver name="S6" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+    </tns:role>
+    
+   <!--  PASSENGER P3 -->
+  <tns:role id="p3" type="P3">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+<!--change pickup point (Local)-->
+    <tns:solver name="S5" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+     <!--change pickup time (Local)-->
+    <tns:solver name="S6" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+
+    </tns:role>
+    
+    
+     <!--  PASSENGER P4 -->
+  <tns:role id="p4" type="P4">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    
+
+  <!--change pickup point (Local)-->
+    <tns:solver name="S5" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpPoint</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+     <!--change pickup time (Local)-->
+    <tns:solver name="S6" selected="true">
+      <tns:issue>
+        <tns:issueType>ChangePickUpTime</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+
+
+    </tns:role>
+   
+  <tns:variable>NMTOKEN</tns:variable>
+</tns:ensemble>

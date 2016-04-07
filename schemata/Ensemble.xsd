@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/Ensemble"
+	xmlns:tns="http://das.fbk.eu/Ensemble" elementFormDefault="qualified" 
+	xmlns:ns1="http://das.fbk.eu/DomainObject">
+	
+
+<import namespace="http://das.fbk.eu/DomainObject" schemaLocation="DomainObject.xsd" />
+	
+	<element name="ensemble">
+		<complexType>
+			<annotation>
+				<documentation>Main type of an ensemble, defined by a name, a sequence
+					of roles and a list of variables
+				</documentation>
+			</annotation>
+			<sequence>
+				<sequence>
+				   <element name="role" type="tns:Role" minOccurs="1" maxOccurs="unbounded"/>
+				</sequence>
+				<element name="variable" type="NMTOKEN" minOccurs="0"
+					maxOccurs="unbounded" />
+
+			</sequence>
+			<attribute name="name" type="string"></attribute>
+		</complexType>
+		
+	</element>
+
+
+
+
+
+
+	<complexType name="Role">
+		<annotation>
+			<documentation>role of an ensemble</documentation>
+		</annotation>
+		<sequence>
+			<element name="domainObjectType" type="string" maxOccurs="1" minOccurs="1"/>
+			<element name="solver" type="tns:Solver" maxOccurs="unbounded"
+				minOccurs="0"></element>
+			<element name="preferences" type="NMTOKEN" minOccurs="0"
+					maxOccurs="unbounded" />
+		</sequence>
+		<attribute name="type" type="string"></attribute>
+		<attribute name="id" type="string"></attribute>
+	</complexType>
+	
+	
+	<complexType name="Solver">
+	<annotation>
+			<documentation>solver of a role in an ensemble</documentation>
+		</annotation>
+			<sequence>
+				<element name="issue" type="tns:Issue" minOccurs="1" maxOccurs="1"></element>
+				<element name="solverCondition" type="string" minOccurs="1"
+					maxOccurs="1" />	
+				<element name="solution" type="tns:Solution" minOccurs="1" maxOccurs="unbounded">
+				</element>
+			</sequence>
+			<attribute name="name" type="string" />
+			<attribute name="selected" type="boolean" use="required"></attribute>
+		</complexType>
+	
+
+	
+	<complexType name="Issue">
+		<annotation>
+			<documentation>issue of a solver</documentation>
+		</annotation>
+		<sequence>
+			<element name="issueType" type="string" maxOccurs="1" minOccurs="1">
+			</element>
+			<element name="issueCondition" type="string" maxOccurs="1" minOccurs="1"></element>
+		</sequence>
+	</complexType>
+	
+	<complexType name="Solution">
+		<sequence>
+			<element name="internalSolution" type="string" minOccurs="0"
+				maxOccurs="1">
+			</element>
+			<element name="issue" type="tns:Issue" minOccurs="0"
+				maxOccurs="unbounded">
+			</element>
+		</sequence>
+		<attribute name="name" type="string" use="required"></attribute>
+		<attribute name="time" type="int"></attribute>
+		<attribute name="cost" type="double"></attribute>
+	</complexType>
+
+
+
+	<attribute name="Name" type="string"></attribute>
+</schema>

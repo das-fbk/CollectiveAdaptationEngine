@@ -1,0 +1,165 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<tns:ensemble name="E4" xmlns:tns="http://das.fbk.eu/Ensemble" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://das.fbk.eu/Ensemble Ensemble.xsd ">
+ 
+  <!--  CS -->
+  <tns:role id="cs" type="CS">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    <!--  solution to possible collition -->
+   <tns:solver name="S12" selected="true">
+      <tns:issue>
+        <tns:issueType>I6</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+        <!-- Possible Collition -->
+          <tns:issueType>I2</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+     <tns:solver name="S4" selected="true">
+      <tns:issue>
+        <tns:issueType>I2</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+          <tns:issueType>I10</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    
+
+    <tns:preferences>NMTOKEN</tns:preferences>
+  </tns:role>
+  
+  <!-- H3 (Ground Station) -->
+  <tns:role id="h3" type="H3">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    <tns:solver name="S17" selected="true">
+      <tns:issue>
+        <tns:issueType>I9</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+        <!-- Possible Collition -->
+        <tns:issueType>I6</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      </tns:solution>
+    </tns:solver>
+ 
+     <tns:preferences>NMTOKEN</tns:preferences>
+  </tns:role>
+   
+  
+  
+   <!-- H2 (Ground Station) -->
+  <tns:role id="h2" type="H2">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    <tns:solver name="S5" selected="true">
+      <tns:issue>
+        <tns:issueType>I10</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+      </tns:solution>
+    </tns:solver>
+    
+    
+    <tns:solver name="S17" selected="true">
+      <tns:issue>
+        <tns:issueType>I10</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+          <tns:issueType>I12</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    <tns:solver name="S18" selected="true">
+      <tns:issue>
+        <tns:issueType>I11</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+          <tns:issueType>I13</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    
+    <tns:preferences>NMTOKEN</tns:preferences>
+  </tns:role>
+   
+   
+   
+    <!-- G1 (Guard) -->
+  <tns:role id="g1" type="G1">
+    <tns:domainObjectType>tns:domainObjectType</tns:domainObjectType>
+    <tns:solver name="S3" selected="true">
+      <tns:issue>
+        <tns:issueType>I2</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+         <tns:issue>
+          <tns:issueType>I11</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    
+     <tns:issue>
+        <!-- Drone manual mode should be activated -->
+          <tns:issueType>I11</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+    
+    <tns:solver name="S17" selected="true">
+      <tns:issue>
+        <tns:issueType>I10</tns:issueType>
+        <tns:issueCondition></tns:issueCondition>
+      </tns:issue>
+      <tns:solverCondition></tns:solverCondition>
+      <tns:solution name="SOL">
+        <tns:internalSolution>internalSolution</tns:internalSolution>
+        <tns:issue>
+          <tns:issueType>I12</tns:issueType>
+          <tns:issueCondition>tns:issueCondition</tns:issueCondition>
+        </tns:issue>
+      </tns:solution>
+    </tns:solver>
+    
+    
+    <tns:preferences>NMTOKEN</tns:preferences>
+  </tns:role>
+   
+   
+  <tns:variable>NMTOKEN</tns:variable>
+</tns:ensemble>

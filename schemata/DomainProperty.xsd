@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<schema xmlns="http://www.w3.org/2001/XMLSchema" targetNamespace="http://das.fbk.eu/Process"
+	xmlns:tns="http://das.fbk.eu/Process" elementFormDefault="qualified">
+
+	<element name="domainProperty">
+		<complexType>
+			<sequence>
+
+				<element name="state" minOccurs="1" maxOccurs="unbounded">
+					<complexType>
+						<simpleContent>
+							<extension base="tns:DomainPropertyStateType">
+								<attribute name="isInitial" type="boolean"></attribute>
+							</extension>
+						</simpleContent>
+					</complexType>
+				</element>
+
+				<element name="event" type="tns:DomainPropertyEventType"
+					minOccurs="0" maxOccurs="unbounded"></element>
+
+				<element name="transition" minOccurs="0" maxOccurs="unbounded">
+					<complexType>
+						<sequence>
+							<element name="from" type="tns:DomainPropertyStateType"
+								minOccurs="1" maxOccurs="1"></element>
+							<element name="to" type="tns:DomainPropertyStateType"
+								minOccurs="1" maxOccurs="1"></element>
+							<element name="event" type="tns:DomainPropertyEventType"
+								minOccurs="1" maxOccurs="1"></element>
+						</sequence>
+						<attribute name="isControllable" type="boolean" use="required"></attribute>
+					</complexType>
+				</element>
+
+			</sequence>
+			<attribute name="id" type="string" use="required"></attribute>
+		</complexType>
+	</element>
+
+	<complexType name="DomainPropertyStateType">
+		<simpleContent>
+			<extension base="string"></extension>
+		</simpleContent>
+	</complexType>
+
+	<complexType name="DomainPropertyEventType">
+		<simpleContent>
+			<extension base="string"></extension>
+		</simpleContent>
+	</complexType>
+
+</schema>
